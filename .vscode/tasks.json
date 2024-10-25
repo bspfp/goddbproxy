@@ -1,0 +1,61 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+          "type": "go",
+          "label": "build for windows",
+          "command": "build",
+          "args": [
+            "-o",
+            "${workspaceFolder}/bin/win/goddbproxy.exe",
+            "${workspaceFolder}"
+          ],
+          "problemMatcher": ["$go"],
+          "group": "build",
+          "options": {
+            "env": {
+              "GOOS": "windows",
+              "GOARCH": "amd64"
+            }
+          }
+        },
+        {
+          "type": "go",
+          "label": "build for linux x64",
+          "command": "build",
+          "args": [
+            "-o",
+            "${workspaceFolder}/bin/linux/goddbproxy",
+            "${workspaceFolder}"
+          ],
+          "problemMatcher": ["$go"],
+          "group": "build",
+          "options": {
+            "env": {
+              "GOOS": "linux",
+              "GOARCH": "amd64"
+            }
+          }
+        },
+        {
+          "type": "go",
+          "label": "build for linux arm64",
+          "command": "build",
+          "args": [
+            "-o",
+            "${workspaceFolder}/bin/arm64/goddbproxy",
+            "${workspaceFolder}"
+          ],
+          "problemMatcher": ["$go"],
+          "group": "build",
+          "options": {
+            "env": {
+              "GOOS": "linux",
+              "GOARCH": "arm64"
+            }
+          }
+        }
+    ]
+}
