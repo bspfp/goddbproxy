@@ -2,6 +2,7 @@ package main
 
 import (
 	"io"
+	"log"
 	"net/http"
 	"strings"
 	"time"
@@ -52,7 +53,8 @@ const authPrefix = "AWS4-HMAC-SHA256 Credential="
 
 func validateRequest(cfg *config, r *http.Request) bool {
 	params := strings.Split(r.URL.Path, "/")
-	if len(params) != 3 {
+	if len(params) < 3 {
+		log.Printf("Invalid request: remote: %v, path: %s\n", r.RemoteAddr, r.URL.Path)
 		return false
 	}
 
@@ -66,5 +68,6 @@ func validateRequest(cfg *config, r *http.Request) bool {
 		}
 	}
 
+	log.Printf("Invalid request: remote: %v, path: %s\n", r.RemoteAddr, r.URL.Path)
 	return false
 }
